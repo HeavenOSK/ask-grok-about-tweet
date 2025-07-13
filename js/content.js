@@ -38,24 +38,37 @@ function createModal(tweetUrl) {
   const title = document.createElement('h3');
   title.textContent = 'Ask Grok about this tweet';
   
-  const input = document.createElement('input');
-  input.type = 'text';
-  input.className = 'grok-input';
-  input.value = tweetUrl;
-  input.placeholder = 'Enter tweet URL';
+  const textarea = document.createElement('textarea');
+  textarea.className = 'grok-input';
+  textarea.value = tweetUrl + ' ';
+  textarea.placeholder = 'Enter tweet URL or question';
+  textarea.rows = 3;
   
-  const askButton = document.createElement('button');
-  askButton.className = 'grok-ask-button';
-  askButton.textContent = 'Ask Grok';
-  askButton.onclick = () => {
-    const query = encodeURIComponent(input.value);
+  const submitToGrok = () => {
+    const query = encodeURIComponent(textarea.value);
     window.open(`https://grok.com?q=${query}`, '_blank');
     modal.remove();
   };
   
+  // Handle Cmd/Ctrl + Enter and Escape
+  textarea.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault();
+      submitToGrok();
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      modal.remove();
+    }
+  });
+  
+  const askButton = document.createElement('button');
+  askButton.className = 'grok-ask-button';
+  askButton.textContent = 'Ask Grok';
+  askButton.onclick = submitToGrok;
+  
   modalContent.appendChild(closeButton);
   modalContent.appendChild(title);
-  modalContent.appendChild(input);
+  modalContent.appendChild(textarea);
   modalContent.appendChild(askButton);
   modal.appendChild(modalContent);
   
@@ -64,6 +77,12 @@ function createModal(tweetUrl) {
       modal.remove();
     }
   };
+  
+  // Focus textarea and move cursor to end
+  setTimeout(() => {
+    textarea.focus();
+    textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+  }, 0);
   
   return modal;
 }
