@@ -1,0 +1,144 @@
+.ask-grok-button {
+  background-color: #1d9bf0;
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 8px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.ask-grok-button:hover {
+  background-color: #1a8cd8;
+  transform: scale(1.1);
+}
+
+.ask-grok-button:active {
+  transform: scale(0.95);
+}
+
+.ask-grok-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  position: relative;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+[data-theme="dark"] .modal-content,
+.dim .modal-content {
+  background-color: #15202b;
+  color: #ffffff;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #536471;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: #1d9bf0;
+}
+
+.modal-content h3 {
+  margin: 0 0 16px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f1419;
+}
+
+[data-theme="dark"] .modal-content h3,
+.dim .modal-content h3 {
+  color: #ffffff;
+}
+
+.grok-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #cfd9de;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.grok-input:focus {
+  outline: none;
+  border-color: #1d9bf0;
+}
+
+[data-theme="dark"] .grok-input,
+.dim .grok-input {
+  background-color: #1e2732;
+  border-color: #38444d;
+  color: #ffffff;
+}
+
+.grok-ask-button {
+  background-color: #1d9bf0;
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.grok-ask-button:hover {
+  background-color: #1a8cd8;
+}
+
+.grok-ask-button:active {
+  transform: scale(0.98);
+}
